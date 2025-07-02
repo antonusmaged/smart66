@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Antonus Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #f2f2f2;
+    }
+    #offline {
+      display: none;
+      text-align: center;
+      padding-top: 10%;
+      color: #333;
+    }
+    #offline img {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    #offline h2 {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    #offline p {
+      font-size: 18px;
+      color: #555;
+    }
+    #offline button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="offline">
+  <img src="https://cdn-icons-png.flaticon.com/512/3388/3388617.png" alt="عقل">
+  <h2>🚫 اللعبة تشتغل بالإنترنت فقط</h2>
+  <p>صُنع بواسطة Antonus Maged</p>
+  <button onclick="location.reload()">🔁 إعادة المحاولة</button>
+</div>
+
+<iframe id="main" src=""></iframe>
+
+<script>
+  const iframe = document.getElementById("main");
+  const offlineDiv = document.getElementById("offline");
+
+  if (navigator.onLine) {
+    iframe.src = "https://strong-warthog-656.convex.app/"; // ✅ ده هو الرابط الجديد
+    iframe.style.display = "block";
+  } else {
+    offlineDiv.style.display = "block";
+  }
+
+  window.addEventListener('offline', () => {
+    iframe.style.display = "none";
+    offlineDiv.style.display = "block";
+  });
+</script>
+
+</body>
+</html>
