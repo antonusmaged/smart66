@@ -8,27 +8,25 @@
       margin: 0;
       font-family: 'Arial', sans-serif;
       background: #f2f2f2;
+      text-align: center;
+      padding-top: 10%;
     }
     #offline {
       display: none;
-      text-align: center;
-      padding-top: 10%;
-      color: #333;
     }
-    #offline img {
+    img {
       width: 150px;
-      height: auto;
       margin-bottom: 20px;
     }
-    #offline h2 {
+    h2 {
       font-size: 24px;
       margin: 10px 0;
     }
-    #offline p {
+    p {
       font-size: 18px;
       color: #555;
     }
-    #offline button {
+    button {
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 16px;
@@ -38,39 +36,30 @@
       border-radius: 6px;
       cursor: pointer;
     }
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-      display: none;
-    }
   </style>
 </head>
 <body>
 
 <div id="offline">
   <img src="https://cdn-icons-png.flaticon.com/512/3388/3388617.png" alt="عقل">
-  <h2>🚫 اللعبة تشتغل بالإنترنت فقط</h2>
+  <h2>🚫 لا يوجد اتصال بالإنترنت</h2>
+  <p>اللعبة تشتغل أونلاين فقط</p>
   <p>صُنع بواسطة Antonus Maged</p>
   <button onclick="location.reload()">🔁 إعادة المحاولة</button>
 </div>
 
-<iframe id="main" src=""></iframe>
-
 <script>
-  const iframe = document.getElementById("main");
-  const offlineDiv = document.getElementById("offline");
-
   if (navigator.onLine) {
-    iframe.src = "https://strong-warthog-656.convex.app/"; // ✅ ده هو الرابط الجديد
-    iframe.style.display = "block";
+    // ✅ لو في نت، حوّل تلقائي للموقع
+    window.location.href = "https://strong-warthog-656.convex.app/";
   } else {
-    offlineDiv.style.display = "block";
+    // ❌ لو مفيش نت، اعرض شاشة الخطأ
+    document.getElementById("offline").style.display = "block";
   }
 
-  window.addEventListener('offline', () => {
-    iframe.style.display = "none";
-    offlineDiv.style.display = "block";
+  // لو النت فصل فجأة بعد التحميل
+  window.addEventListener("offline", () => {
+    document.getElementById("offline").style.display = "block";
   });
 </script>
 
